@@ -5,12 +5,45 @@
  * @format
  */
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, Text, useColorScheme, View } from 'react-native';
+import React from 'react';
+import { Platform, StatusBar, StyleSheet, View, useColorScheme } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+  lightColors, createTheme, ThemeProvider, Button, darkColors,
+  Text
+} from '@rneui/themed';
+
+const lightTheme = createTheme({
+  lightColors: {
+    ...Platform.select({
+      default: lightColors.platform.android,
+      ios: lightColors.platform.ios,
+    }),
+  },
+  darkColors: {
+    ...Platform.select({
+      default: darkColors.platform.android,
+      ios: darkColors.platform.ios,
+    }),
+  },
+  mode: 'light'
+});
+
+const darkTheme = createTheme({
+  lightColors: {
+    ...Platform.select({
+      default: lightColors.platform.android,
+      ios: lightColors.platform.ios,
+    }),
+  },
+  darkColors: {
+    ...Platform.select({
+      default: darkColors.platform.android,
+      ios: darkColors.platform.ios,
+    }),
+  },
+  mode: 'dark'
+});
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -24,12 +57,16 @@ function App() {
 }
 
 function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
+
+  const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <View style={[styles.container]}>
-      <Text style={styles.title}>Request</Text>
-    </View>
+    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+      <View style={[styles.container]}>
+        <Text style={styles.title}>Request</Text>
+        <Button>Start</Button> 
+      </View>
+    </ThemeProvider>
   );
 }
 
@@ -40,7 +77,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 50
+    fontSize: 50,
+    marginBottom: 25,
   },
 });
 
