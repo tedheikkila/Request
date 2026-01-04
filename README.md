@@ -1,8 +1,8 @@
 # Request
 
-connection and messaging app
-iOS app in App Store
-copyrighted 01/03/2026 as "Request" by Ted Heikkila
+- connection and messaging app
+- iOS app in App Store
+- copyrighted 01/03/2026 as "Request" by Ted Heikkila
 
 ### version
 
