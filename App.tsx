@@ -8,19 +8,11 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View, useColorScheme } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import {
-  lightColors, createTheme, ThemeProvider, Button, darkColors,
-  Text
-} from '@rneui/themed';
+import { lightColors, createTheme, ThemeProvider
+         ,Button, darkColors, Text } from '@rneui/themed';
 
 const lightTheme = createTheme({
   lightColors: {
-    ...Platform.select({
-      default: lightColors.platform.android,
-      ios: lightColors.platform.ios,
-    }),
-  },
-  darkColors: {
     ...Platform.select({
       default: darkColors.platform.android,
       ios: darkColors.platform.ios,
@@ -30,16 +22,10 @@ const lightTheme = createTheme({
 });
 
 const darkTheme = createTheme({
-  lightColors: {
+  darkColors: {
     ...Platform.select({
       default: lightColors.platform.android,
       ios: lightColors.platform.ios,
-    }),
-  },
-  darkColors: {
-    ...Platform.select({
-      default: darkColors.platform.android,
-      ios: darkColors.platform.ios,
     }),
   },
   mode: 'dark'
